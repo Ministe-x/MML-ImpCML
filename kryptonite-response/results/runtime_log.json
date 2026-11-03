@@ -1,0 +1,714 @@
+[
+ {
+  "name": "03_mlp_grid_n20",
+  "seconds": 184.1,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_mlp_grid_n30",
+  "seconds": 222.13,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_mlp_grid_n40",
+  "seconds": 385.13,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n20_s0",
+  "seconds": 23.61,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n20_s1",
+  "seconds": 82.03,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n20_s2",
+  "seconds": 59.75,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n20_s3",
+  "seconds": 74.02,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n20_s4",
+  "seconds": 98.59,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n30_s0",
+  "seconds": 93.34,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n30_s1",
+  "seconds": 202.44,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n30_s2",
+  "seconds": 216.93,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n30_s3",
+  "seconds": 166.1,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n30_s4",
+  "seconds": 136.53,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n40_s0",
+  "seconds": 391.7,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n40_s1",
+  "seconds": 546.31,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n40_s2",
+  "seconds": 545.9,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n40_s3",
+  "seconds": 509.07,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "03_models_n40_s4",
+  "seconds": 492.78,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "04_learning_curves_n20",
+  "seconds": 692.08,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "04_learning_curves_n30",
+  "seconds": 1468.68,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "04_learning_curves_n40",
+  "seconds": 2950.99,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "02_mock_kernel_n20",
+  "seconds": 37.54,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "02_mock_kernel_n30",
+  "seconds": 144.12,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "02_mock_kernel_n40",
+  "seconds": 492.41,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "02_sparse_poly_n20",
+  "seconds": 233.97,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "02_sparse_poly_n30",
+  "seconds": 430.97,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "02_sparse_poly_n40",
+  "seconds": 1040.91,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "06_flop_counts",
+  "seconds": 0.92,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "07_final_n20",
+  "seconds": 56.16,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "07_final_n30",
+  "seconds": 138.24,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "07_final_n40",
+  "seconds": 153.53,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "07_final_adapt",
+  "seconds": 45.73,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Linear probe_s0",
+  "seconds": 9.53,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_MLP probe_s0",
+  "seconds": 43.73,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Scratch (same architecture)_s0",
+  "seconds": 23.69,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Full fine-tuning_s0",
+  "seconds": 43.97,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=1_s0",
+  "seconds": 21.42,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=2_s0",
+  "seconds": 20.35,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=4_s0",
+  "seconds": 14.59,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=8_s0",
+  "seconds": 15.1,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=1_s0",
+  "seconds": 35.92,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=4_s0",
+  "seconds": 25.37,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=8_s0",
+  "seconds": 27.61,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Linear probe_s1",
+  "seconds": 11.44,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_MLP probe_s1",
+  "seconds": 19.44,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Scratch (same architecture)_s1",
+  "seconds": 27.96,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Full fine-tuning_s1",
+  "seconds": 59.78,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=1_s1",
+  "seconds": 16.86,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=2_s1",
+  "seconds": 17.46,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=4_s1",
+  "seconds": 14.8,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=8_s1",
+  "seconds": 12.26,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=1_s1",
+  "seconds": 29.73,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=4_s1",
+  "seconds": 29.03,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=8_s1",
+  "seconds": 34.52,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Linear probe_s2",
+  "seconds": 7.43,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_MLP probe_s2",
+  "seconds": 18.89,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Scratch (same architecture)_s2",
+  "seconds": 27.64,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Full fine-tuning_s2",
+  "seconds": 40.92,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=1_s2",
+  "seconds": 17.56,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=2_s2",
+  "seconds": 14.87,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=4_s2",
+  "seconds": 12.23,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=8_s2",
+  "seconds": 13.09,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=1_s2",
+  "seconds": 40.41,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=4_s2",
+  "seconds": 27.96,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=8_s2",
+  "seconds": 37.49,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Linear probe_s3",
+  "seconds": 13.29,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_MLP probe_s3",
+  "seconds": 23.54,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Scratch (same architecture)_s3",
+  "seconds": 43.19,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Full fine-tuning_s3",
+  "seconds": 41.53,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=1_s3",
+  "seconds": 18.15,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=2_s3",
+  "seconds": 15.3,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=4_s3",
+  "seconds": 16.73,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=8_s3",
+  "seconds": 13.7,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=1_s3",
+  "seconds": 31.65,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=4_s3",
+  "seconds": 43.21,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=8_s3",
+  "seconds": 28.69,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Linear probe_s4",
+  "seconds": 8.97,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_MLP probe_s4",
+  "seconds": 30.05,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Scratch (same architecture)_s4",
+  "seconds": 32.58,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_Full fine-tuning_s4",
+  "seconds": 44.19,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=1_s4",
+  "seconds": 17.73,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=2_s4",
+  "seconds": 18.66,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=4_s4",
+  "seconds": 12.71,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1, r=8_s4",
+  "seconds": 12.81,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=1_s4",
+  "seconds": 38.77,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=4_s4",
+  "seconds": 30.85,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_LoRA, W1-W4, r=8_s4",
+  "seconds": 27.06,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "05_sample_efficiency",
+  "seconds": 1663.96,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ },
+ {
+  "name": "01_selection",
+  "seconds": 8.73,
+  "threads": 2,
+  "cpu": "x86_64",
+  "cores_visible": 2,
+  "notes": ""
+ }
+]

@@ -1,0 +1,7 @@
+# Versions used to produce the results in the paper (Python 3.13, CPU only).
+numpy>=2.0          # 2.5.3
+scipy>=1.13         # 1.18.1
+scikit-learn>=1.5   # 1.9.1
+torch>=2.3          # 2.14.1 (CPU is enough)
+matplotlib>=3.8     # 3.11.2
+jupyter             # to run / re-execute the notebooks (nbconvert 7.17.2)

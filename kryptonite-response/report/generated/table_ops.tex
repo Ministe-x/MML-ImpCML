@@ -1,0 +1,19 @@
+\begin{tabular}{lrrr}
+\toprule
+Method & Forward & Backward & Trainable \\
+\midrule
+\multicolumn{4}{l}{\emph{Hidden layer $\mathbf{W}_2$ ($512\times512$), $r=4$}} \\
+Full fine-tuning & 16.78 & 33.55 & 262,656 \\
+LoRA, $\mathbf{B}(\mathbf{A}\mathbf{X})$ & 17.04 & 17.30 & 4,096 \\
+LoRA, $(\mathbf{B}\mathbf{A})\mathbf{X}$ & 17.83 & 35.65 & 4,096 \\
+\midrule
+\multicolumn{4}{l}{\emph{First layer $\mathbf{W}_1$ ($512\times40$), $r=1$}} \\
+Full fine-tuning & 1.31 & 1.31 & 20,992 \\
+LoRA, $\mathbf{B}(\mathbf{A}\mathbf{X})$ & 1.35 & 0.07 & 552 \\
+LoRA, $(\mathbf{B}\mathbf{A})\mathbf{X}$ & 1.33 & 1.35 & 552 \\
+\midrule
+\multicolumn{4}{l}{\emph{Whole KryptoNet-40}} \\
+Full fine-tuning & 51.68 & 102.04 & 809,473 \\
+LoRA on $\mathbf{W}_1$, $r=1$ & 51.71 & 50.43 & 552 \\
+\bottomrule
+\end{tabular}
