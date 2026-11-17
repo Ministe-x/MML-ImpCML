@@ -1,8 +1,9 @@
-"""Multilayer perceptrons and a single training loop shared by every neural model in the paper.
+"""Multilayer perceptrons and the one training loop used for every neural model in the project.
 
-Training: AdamW on the binary cross-entropy (logistic) loss, mini-batches, and early stopping on
-VALIDATION accuracy (patience epochs without improvement), restoring the best weights.  The
-test split is never seen during training.
+Sharing a single loop (AdamW on the logistic loss, mini-batches, early stopping on validation
+accuracy) means that differences between the MLP, the probes, full fine-tuning and LoRA come from the
+model and from which parameters are trained, not from different training recipes.  The best weights
+seen on the validation split are restored at the end, and the test split never enters training.
 """
 import copy
 import random
@@ -19,7 +20,7 @@ def set_seed(seed):
 
 
 def mlp(n_inputs, width=512, depth=3, dropout=0.0):
-    """ReLU MLP with `depth` hidden layers of size `width` and one output logit."""
+    """ReLU MLP with `depth` hidden layers of size `width` and a single output logit."""
     layers, d = [], n_inputs
     for _ in range(depth):
         layers += [nn.Linear(d, width), nn.ReLU()]
@@ -39,6 +40,7 @@ def to_tensor(*arrays):
 
 @torch.no_grad()
 def logits(net, X, batch=8192):
+    """Output logits in evaluation mode (dropout off), computed in batches to bound memory."""
     net.eval()
     X = torch.as_tensor(np.ascontiguousarray(X), dtype=torch.float32)
     return torch.cat([net(X[i:i + batch]).squeeze(1) for i in range(0, len(X), batch)]).numpy()
@@ -50,9 +52,12 @@ def accuracy(net, X, y):
 
 def train(net, X_tr, y_tr, X_va, y_va, lr=1e-3, weight_decay=0.0, batch_size=128,
           max_epochs=300, patience=30, seed=0):
-    """Train the parameters of `net` that require grad; early stopping on validation accuracy.
+    """Train the parameters of `net` that require gradients, with early stopping on validation accuracy.
 
-    Returns (net with best weights restored, dict with best validation accuracy and epochs run).
+    Only parameters with requires_grad=True go to the optimiser, so the same function trains a full
+    network, a probe on a frozen network or just the LoRA matrices.  Training stops after `patience`
+    epochs without a new best validation accuracy.
+    Returns (net with the best weights restored, {"val_acc": best validation accuracy, "epochs": epochs run}).
     """
     set_seed(seed)
     X_tr, y_tr = to_tensor(X_tr.astype(np.float32), y_tr.astype(np.float32))

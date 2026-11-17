@@ -1,0 +1,11 @@
+{
+ "20|MLP": 5461.11327884039,
+ "20|Sparse poly": 2921.931386259614,
+ "20|Quadratic LR": null,
+ "30|MLP": 7614.337842433195,
+ "30|Sparse poly": 2817.492111954832,
+ "30|Quadratic LR": null,
+ "40|MLP": 14029.064023134715,
+ "40|Sparse poly": 2903.3996892986697,
+ "40|Quadratic LR": null
+}

@@ -32,6 +32,7 @@ the executed notebooks, and our hidden-set predictions in `hiddenlabels/`.
 | `notebooks/06_lora_operation_count.ipynb` | Table 2 — LoRA operation counts verified with PyTorch's `FlopCounterMode` |
 | `notebooks/07_hidden_predictions.ipynb` | Final models and `hiddenlabels/*.npy` (runs `check_submission.py`) |
 | `notebooks/08_sustainability.ipynb` | Table 4 — wall-clock time, energy and CO2e of all experiments |
+| `notebooks/02b_overfitting.ipynb` | Figure 5 (appendix) — train vs test accuracy against degree (the mock model overfits, $C=0.85$ on the selected bits underfits); supplementary sweep over $C$ (`figS_overfit`) |
 | `results/` | JSON outputs of the notebooks (every number in the report is generated from these) |
 | `figures/` | Figures as PDF (used in the report) and PNG |
 | `hiddenlabels/` | `y_predicted_20.npy`, `y_predicted_30.npy`, `y_predicted_40.npy`, `y_predicted_40_adapt.npy` |
@@ -45,9 +46,11 @@ pip install -r requirements.txt
 cd notebooks
 # order matters: 03 chooses the MLP configuration used by 04 and 07; 05 chooses the LoRA learning rate used by 07
 for nb in 01_dataset_anatomy 03_model_comparison 04_learning_curves 02_polynomial_models \
-          05_kryptonet_lora 06_lora_operation_count 07_hidden_predictions 08_sustainability; do
+          05_kryptonet_lora 06_lora_operation_count 07_hidden_predictions; do
     jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 $nb.ipynb
 done
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 02b_overfitting.ipynb   # needs 02
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 08_sustainability.ipynb
 cd .. && python check_submission.py .
 python report/make_numbers.py && cd report && pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```

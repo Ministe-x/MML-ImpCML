@@ -72,9 +72,11 @@ Run every notebook from inside `kryptonite-response/notebooks/` (they locate the
 ```bash
 cd kryptonite-response/notebooks
 for nb in 01_dataset_anatomy 03_model_comparison 04_learning_curves 02_polynomial_models \
-          05_kryptonet_lora 06_lora_operation_count 07_hidden_predictions 08_sustainability; do
+          05_kryptonet_lora 06_lora_operation_count 07_hidden_predictions; do
     jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 $nb.ipynb
 done
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 02b_overfitting.ipynb   # needs 02
+jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 08_sustainability.ipynb
 cd ..
 
 python check_submission.py .                      # check the format of hiddenlabels/
@@ -82,7 +84,16 @@ python report/make_numbers.py                     # results/*.json -> report/gen
 cd report && pdflatex main && bibtex main && pdflatex main && pdflatex main
 ```
 
-### 2.2 Running only part of it
+### 2.2 marimo versions
+
+[`kryptonite-response/marimo/`](kryptonite-response/marimo/) re-implements notebooks 01–08 as reactive [marimo](https://marimo.io) notebooks. Expensive experiments sit behind *Recompute* buttons and otherwise load the cached results, so every notebook opens in seconds. There are also interactive extras: a LoRA lab, an operation-count explorer and sustainability sliders. Outputs go to `results_marimo/`, so nothing in `results/`, `figures/` or `hiddenlabels/` is overwritten.
+
+```bash
+pip install "marimo>=0.25"
+cd kryptonite-response/marimo && marimo edit 05_kryptonet_lora.py
+```
+
+### 2.3 Running only part of it
 
 The JSON outputs of every notebook are committed in `results/`, so you can re-run only what you need:
 
@@ -114,6 +125,8 @@ kryptonite-coursework/
     ├── Datasets/                      [provided] labelled and hidden sets (*.npy)
     ├── krypto/                        shared code package (see §4.1)
     ├── notebooks/                     01–08, each reproduces one figure or table (see §4.2)
+    ├── marimo/                        marimo re-implementations of 01–08 (see marimo/README.md)
+    ├── results_marimo/                outputs of the marimo notebooks (created on first run)
     ├── results/                       JSON outputs of the notebooks; every number in the report comes from here
     ├── figures/                       figures (PDF for the report, PNG for preview)
     ├── hiddenlabels/                  y_predicted_{20,30,40,40_adapt}.npy
@@ -167,6 +180,7 @@ No experimental number is typed into the report by hand: every number is a `\new
 | [`06_lora_operation_count`](kryptonite-response/notebooks/06_lora_operation_count.ipynb) | Cost of one LoRA training step | Measure forward + backward with `FlopCounterMode` and `assert` equality with the analytic formulas; compare full fine-tuning, $B(AX)$ and $(BA)X$; whole-network step time | **Table 2**, `lora_flops.json`, `lora_network_cost.json` |
 | [`07_hidden_predictions`](kryptonite-response/notebooks/07_hidden_predictions.ipynb) | Final submission | 20/30/40: sparse polynomial LR refitted on all labelled data; Adapt: majority vote of five rank-1 LoRA models; cross-checks with independent models; runs `check_submission.py` | `hiddenlabels/*.npy`, `hidden_predictions_summary.json` |
 | [`08_sustainability`](kryptonite-response/notebooks/08_sustainability.ipynb) | Environmental impact | Convert the logged runtimes to energy and CO₂ with the Green Algorithms model (with a sensitivity value); compare cost and accuracy of single fits | **Table 4**, `sustainability.json` |
+| [`02b_overfitting`](kryptonite-response/notebooks/02b_overfitting.ipynb) | Overfitting or underfitting? | Train vs test accuracy against degree for the mock model on all bits and our model on the selected bits ($C=0.85$ and tuned); sweep over $C$ | **Figure 5** (appendix), `poly_fit_diagnosis.json`, `poly_overfit.json` |
 
 ### 4.3 Experimental protocol (shared by all notebooks)
 

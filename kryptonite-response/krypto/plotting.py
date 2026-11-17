@@ -1,6 +1,10 @@
-"""Figure style: figures are created at their printed size (3.25 in per column, 6.75 in full width)
-with 10 pt text, the size of the main text, and only Type-1 fonts (LaTeX rendering) when available.
-They use constrained layout and are saved without cropping, so they are included in the paper unscaled."""
+"""Shared figure style for the paper.
+
+We draw every figure at the size it is printed (3.25 in for one column, 6.75 in for the full width) with
+10 pt text, and include it without scaling.  That way the text in figures is exactly as large as the main
+text, which the coursework asks for, and we avoid the usual problem of labels shrinking when a large
+figure is squeezed into a column.  LaTeX rendering is used when available so that the PDF has only
+Type-1 fonts."""
 import io
 import shutil
 
@@ -9,6 +13,7 @@ import matplotlib.pyplot as plt
 from .data import FIGURES
 
 COLUMN, FULL = 3.25, 6.75
+# Okabe-Ito colours (safe for colour-blind readers); a dataset keeps the same colour in every figure
 COLORS = {20: "#0072B2", 30: "#E69F00", 40: "#009E73", "adapt": "#CC79A7", "gray": "#555555"}
 
 
@@ -22,7 +27,8 @@ def use_paper_style():
     if shutil.which("latex"):
         plt.rcParams.update({"text.usetex": True, "font.family": "serif",
                              "text.latex.preamble": r"\usepackage{mathptmx}\usepackage{amsmath}"})
-        try:                                   # LaTeX needs the cm-super fonts for Matplotlib
+        # test-render once: if LaTeX lacks the fonts Matplotlib needs (cm-super), fall back to plain text
+        try:
             fig = plt.figure(figsize=(1, 1)); fig.text(0.5, 0.5, r"$n=40$"); fig.savefig(io.BytesIO(), format="pdf")
             plt.close(fig)
             return "usetex"

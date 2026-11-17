@@ -1,13 +1,18 @@
-"""Polynomial logistic regression: the mock paper's models and our sparse (feature-selected) variant.
+"""Polynomial logistic regression: the mock paper's models and our version on selected coordinates.
 
-`agreements`, `polyfeatures_kernel_table` and `kernel_logreg` are copied unchanged from the mock
-paper's notebook (MockPaperExperiments.ipynb) so that our reproduction uses exactly their model.
+The functions in the first section (`poly_logreg`, `agreements`, `polyfeatures_kernel_table`,
+`kernel_logreg`) are taken unchanged from the mock paper's notebook (MockPaperExperiments.ipynb).  Our
+reproduction therefore runs their exact model, and any difference in our results comes from the inputs
+we give it, not from a reimplementation.
 
-Key identity used by `SparsePolyLogReg`: on +-1 bits, every monomial of PolynomialFeatures(d)
-reduces to a parity chi_T(b) = prod_{i in T} b_i, so the (normalised) polynomial kernel is
-    k(b, b') = sum_{|T| <= d} c_|T| chi_T(b) chi_T(b') / Z,   c_s = C(k + floor((d-s)/2), k),
-and kernel logistic regression in the dual is EXACTLY primal logistic regression on the explicit
-features sqrt(c_|T| / Z) chi_T(b).  On k = 10 selected bits there are at most 2^10 = 1024 features.
+Our own model rests on one observation.  On +-1 bits b_i^2 = 1, so every monomial produced by
+PolynomialFeatures(d) collapses to a parity chi_T(b) = prod_{i in T} b_i, and the mock paper's
+normalised polynomial kernel can be written as
+    k(b, b') = sum_{|T| <= d} c_|T| chi_T(b) chi_T(b') / Z,   c_s = C(k + floor((d-s)/2), k).
+Kernel logistic regression in the dual is then exactly ordinary (primal) logistic regression on the
+explicit features sqrt(c_|T| / Z) chi_T(b).  On all n bits this feature space is far too large to write
+down, but on k = 10 selected bits it has at most 2^10 = 1024 features, so we can fit the very same model
+directly and quickly.
 """
 import itertools
 import warnings
@@ -27,7 +32,7 @@ warnings.filterwarnings("ignore", message=".*encountered in matmul")
 # Mock paper models (unchanged)
 # ----------------------------------------------------------------------------------------------
 def poly_logreg(X_train, y_train, X_test, y_test, degree):
-    """Logistic regression on explicit polynomial features (mock paper, Figure 2)."""
+    """Logistic regression on explicit polynomial features, as in the mock paper's Figure 2 (data scaling)."""
     poly = PolynomialFeatures(degree)
     logreg = LogisticRegression(max_iter=100, solver="sag", C=0.85)
     with warnings.catch_warnings():
@@ -37,13 +42,15 @@ def poly_logreg(X_train, y_train, X_test, y_test, degree):
 
 
 def agreements(X1, X2, n):
-    """Number of agreeing bits between every pair of rows, after rounding the inputs to bits."""
+    """Number of agreeing bits between every pair of rows.  Note that the mock paper's kernel model
+    itself rounds the inputs to bits with np.sign, so working on bits is not a choice we added."""
     B1, B2 = np.sign(X1).astype(np.float32), np.sign(X2).astype(np.float32)
     return np.rint((n + B1 @ B2.T) / 2).astype(np.uint8)
 
 
 def polyfeatures_kernel_table(n, degree):
-    """phi(x).phi(x') for PolynomialFeatures(degree) on +-1 bits, indexed by the number m of agreeing bits."""
+    """phi(b).phi(b') for PolynomialFeatures(degree) on +-1 bits as a function of the number m of agreeing
+    bits, normalised so that k(b, b) = 1.  On the hypercube the kernel depends on b, b' only through m."""
     table = np.zeros(n + 1)
     for s in range(degree + 1):
         weight = comb(n + (degree - s) // 2, n)
@@ -53,7 +60,10 @@ def polyfeatures_kernel_table(n, degree):
 
 
 def kernel_logreg(K, y, C=0.85, iters=30, tol=1e-6):
-    """C * sum(log-loss) + ||w||^2 / 2 in the dual, by Newton's method (Rasmussen & Williams, Alg. 3.1)."""
+    """Minimise C * sum(log-loss) + ||w||^2 / 2 in the dual by Newton's method (Rasmussen & Williams, Alg. 3.1).
+
+    Each step factorises an N x N matrix, which is why one fit at n = 40 needs ~4 GB and minutes of CPU.
+    """
     t = y.astype(np.float64); sign = 2 * t - 1
     a, f = np.zeros(len(t), np.float32), np.zeros(len(t))
     obj = C * len(t) * np.log(2)
@@ -82,7 +92,8 @@ def kernel_logreg(K, y, C=0.85, iters=30, tol=1e-6):
 
 
 def mock_kernel_accuracies(X_train, y_train, X_test, y_test, degrees=range(1, 11), C=0.85, verbose=True):
-    """Mock paper Figure 1: normalised polynomial-kernel logistic regression on all n bits."""
+    """The mock paper's Figure 1: normalised polynomial-kernel logistic regression on all n bits, one fit
+    per degree, returning the test accuracy for each degree."""
     n = X_train.shape[1]
     M_train, M_test = agreements(X_train, X_train, n), agreements(X_test, X_train, n)
     out = {}
@@ -96,10 +107,15 @@ def mock_kernel_accuracies(X_train, y_train, X_test, y_test, degrees=range(1, 11
 
 
 # ----------------------------------------------------------------------------------------------
-# Our model: the same kernel model, restricted to selected coordinates, fitted in the primal
+# Our model: the same kernel model, restricted to the selected coordinates and fitted in the primal
 # ----------------------------------------------------------------------------------------------
 def parity_features(X, S, degree):
-    """Explicit feature map of the normalised PolynomialFeatures(degree) kernel on the bits b_S."""
+    """Explicit feature map of the normalised PolynomialFeatures(degree) kernel on the bits b_S.
+
+    One column per parity chi_T with |T| <= degree, scaled by sqrt(c_|T| / Z).  The scaling matters: it is
+    what makes our fit identical to the mock paper's, and it gives high-degree parities small features,
+    which is why the mock paper's C = 0.85 shrinks them so strongly.
+    """
     B, k = bits(X)[:, list(S)], len(S)
     weights = {s: comb(k + (degree - s) // 2, k) for s in range(degree + 1)}
     Z = sum(weights[s] * comb(k, s) for s in range(min(degree, k) + 1))
@@ -113,7 +129,10 @@ def parity_features(X, S, degree):
 
 
 class SparsePolyLogReg:
-    """Degree-d polynomial logistic regression (mock paper's kernel, C=0.85) on selected bits S."""
+    """Degree-d polynomial logistic regression with the mock paper's kernel on the selected bits S.
+
+    C defaults to the mock paper's 0.85; in our experiments it is chosen on the validation split.
+    """
 
     def __init__(self, S, degree, C=0.85):
         self.S, self.degree, self.C = list(S), degree, C

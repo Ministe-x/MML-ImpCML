@@ -5,3 +5,4 @@ scikit-learn>=1.5   # 1.9.1
 torch>=2.3          # 2.14.1 (CPU is enough)
 matplotlib>=3.8     # 3.11.2
 jupyter             # to run / re-execute the notebooks (nbconvert 7.17.2)
+marimo>=0.25        # optional: only for the marimo notebooks in marimo/ (0.25.2)

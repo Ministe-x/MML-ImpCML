@@ -710,5 +710,77 @@
   "cpu": "x86_64",
   "cores_visible": 2,
   "notes": ""
+ },
+ {
+  "name": "02_overfit_n20",
+  "seconds": 33.66,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_overfit_n30",
+  "seconds": 54.44,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_overfit_n40",
+  "seconds": 138.5,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_fit_mock_n20",
+  "seconds": 9.3,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_fit_sparse_n20",
+  "seconds": 15.94,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_fit_mock_n30",
+  "seconds": 26.91,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_fit_sparse_n30",
+  "seconds": 24.33,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_fit_mock_n40",
+  "seconds": 79.05,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
+ },
+ {
+  "name": "02_fit_sparse_n40",
+  "seconds": 39.17,
+  "threads": 10,
+  "cpu": "arm",
+  "cores_visible": 14,
+  "notes": ""
  }
 ]

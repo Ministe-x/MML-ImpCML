@@ -1,7 +1,10 @@
-"""Generate report/generated/*.tex (numbers and table bodies) from results/*.json and copy figures/ into report/.
+"""Write the numbers and table bodies quoted in the paper (report/generated/*.tex) from results/*.json.
 
-Run after the notebooks:  python report/make_numbers.py
-Every number quoted in the paper comes from here, so text, tables and notebooks cannot disagree.
+Run it after the notebooks:  python report/make_numbers.py
+We never type a result into main.tex by hand.  Each number is a LaTeX macro defined here from the JSON
+files the notebooks write, so the text, the tables and the notebooks cannot drift apart when an
+experiment is re-run.  A macro whose result is missing is written as ?? so that the gap is visible in
+the PDF.  The script also copies figures/ into report/ so that the LaTeX folder compiles on its own.
 """
 import json
 import shutil
@@ -63,6 +66,14 @@ if sp:
         define(f"SelFixed{WORDS[n]}", f"{mci(sp[str(n)]['fixed']['10'])[0]:.1f}")
         define(f"SelTuned{WORDS[n]}", f"{mci(sp[str(n)]['tuned']['10'])[0]:.1f}")
         define(f"SelTunedSix{WORDS[n]}", f"{mci(sp[str(n)]['tuned']['6'])[0]:.1f}")
+fit = load("poly_fit_diagnosis.json")
+if fit:
+    for n in (20, 30, 40):
+        define(f"MockTrainTen{WORDS[n]}", f"{100 * fit[str(n)]['mock']['10']['train']:.1f}")
+        define(f"SelFixedTrainTen{WORDS[n]}", f"{mci(fit[str(n)]['fixed']['10']['train'])[0]:.1f}")
+    gap = max(np.mean(fit[str(n)]["tuned"][str(d)]["train"]) - np.mean(fit[str(n)]["tuned"][str(d)]["test"])
+              for n in (20, 30, 40) for d in range(6, 11))
+    define("TunedGapMax", f"{100 * gap:.1f}")
 
 # ---------------------------------------------------------------- Table 1: model comparison
 mc = load("model_comparison.json")
@@ -203,7 +214,8 @@ if su:
 
 # ---------------------------------------------------------------- write macros (missing ones become ??)
 REQUIRED = """etaPct BayesPct LimitTwo LimitSix LimitSeven WeightFourEight MockTwentyTen MockThirtyTen MockFortyTen
-SelFixedTwenty SelFixedThirty SelFixedForty SelTunedTwenty SelTunedThirty SelTunedForty MLPTwentyMean MLPThirtyMean
+SelFixedTwenty SelFixedThirty SelFixedForty SelTunedTwenty SelTunedThirty SelTunedForty MockTrainTenTwenty
+MockTrainTenThirty MockTrainTenForty SelFixedTrainTenTwenty SelFixedTrainTenThirty SelFixedTrainTenForty TunedGapMax MLPTwentyMean MLPThirtyMean
 MLPFortyMean SparseTwentyMean SparseThirtyMean SparseFortyMean TimeKernel TimeSparse TimeMLP MLPconfigs NmlpTwenty
 NmlpThirty NmlpForty MLPgrowth NsparseTwenty NsparseThirty NsparseForty ZeroShotMean LPMean MLPProbeMean ScratchMean FullFTMean
 LoRAoneMean SwapMean LoRAminMean SwapZeroShotPct ZeroShotAllPct ProbeBitZero ProbeBitNineteen LoRAatFourHundred

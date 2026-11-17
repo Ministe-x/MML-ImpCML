@@ -1,4 +1,9 @@
-"""Summary statistics over repeated splits/seeds."""
+"""Summaries over the repeated splits, and reading/writing the JSON results.
+
+Every number in the paper is a mean over five splits with a 95% Student-t interval.  With only five
+repetitions the t quantile (2.78) is noticeably larger than the normal one (1.96), so the intervals are
+honest about how few repetitions we have.
+"""
 import json
 
 import numpy as np
@@ -17,11 +22,16 @@ def mean_ci(values, level=0.95):
 
 
 def binomial_ci(acc, n, level=0.95):
-    """Normal-approximation CI half-width for an accuracy measured on n test points."""
+    """Half-width of the normal-approximation interval for an accuracy measured on n test points.
+
+    This is the +-3.5 points quoted in the paper for 800 test points at 50%, against which the mock
+    paper's "worse than random" 46-50% should be read.
+    """
     return float(stats.norm.ppf(0.5 + level / 2) * np.sqrt(acc * (1 - acc) / n))
 
 
 def fmt(values, scale=100, digits=1):
+    """Format repetitions as 'mean ± half-width' in percent, for printing."""
     m, h = mean_ci(values)
     return f"{scale * m:.{digits}f} ± {scale * h:.{digits}f}"
 
@@ -33,6 +43,7 @@ def save_json(obj, name):
 
 
 def load_json(name):
+    """Load results/<name>, or return None if the notebook that writes it has not been run yet."""
     path = RESULTS / name
     if not path.exists():
         return None
